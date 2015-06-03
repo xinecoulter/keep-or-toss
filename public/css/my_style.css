@@ -14,6 +14,14 @@ body {
   text-align: center;
 }
 
+.theme-showcase .button-start-container {
+  display: none;
+}
+
+.theme-showcase .active {
+  display: block;
+}
+
 .results .keep-message, .toss-message {
   text-align: center;
   display: none;
@@ -33,8 +41,4 @@ body {
 
 .questions-list li {
   display: none;
-}
-
-.questions-list .active {
-  display: block;
 }
