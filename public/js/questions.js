@@ -3,20 +3,36 @@ window.Questions = {};
 Questions.setupYesButtons = function() {
     $(".questions-list #button-yes").click(function() {
         var currentQuestion = $(this).parents("li");
+        var nextItem;
 
-        hide_question(currentQuestion);
-        display_question($(".questions-list li")[$(".questions-list li").index(currentQuestion) + 1]);
+        hideQuestion(currentQuestion);
+        if (currentQuestion.next().length) {
+            nextItem = currentQuestion.next();
+        }  else {
+            nextItem = $(".keep-message");
+        }
+        displayQuestionOrResult(nextItem);
     });
 };
 
-hide_question = function(element) {
-    $(element).removeClass("active");
+Questions.setupNoButtons = function() {
+    $(".questions-list #button-no").click(function() {
+        var currentQuestion = $(this).parents("li");
+
+        hideQuestion(currentQuestion);
+        displayQuestionOrResult($(".toss-message"));
+    });
 };
 
-display_question = function(element) {
-    $(element).addClass("active");
+hideQuestion = function(element) {
+    element.removeClass("active");
+};
+
+displayQuestionOrResult = function(element) {
+    element.addClass("active");
 };
 
 $(function() {
     Questions.setupYesButtons();
+    Questions.setupNoButtons();
 });
